@@ -1,13 +1,3 @@
-//Audio Format Fallback Logic
-function getSupportedAudioPath(basePath) {
-  const audio = document.createElement("audio");
-  if (audio.canPlayType("audio/ogg")) {
-    return basePath + ".ogg";
-  } else {
-    return basePath + ".mp3";
-  }
-}
-
 //Keyboard Sound Theme Loader
 let sounds = {};
 let theme = "keyboard1";
@@ -17,29 +7,26 @@ function loadTheme(themeName) {
   localStorage.setItem("theme", theme);
 
   sounds = {
-    cap: new Audio(getSupportedAudioPath(`sounds/themes/${theme}/cap`)),
-    delete: new Audio(getSupportedAudioPath(`sounds/themes/${theme}/delete`)),
-    return: new Audio(getSupportedAudioPath(`sounds/themes/${theme}/return`)),
-    space: new Audio(getSupportedAudioPath(`sounds/themes/${theme}/space`)),
+    cap: new Audio(`sounds/themes/${theme}/cap.mp3`),
+    delete: new Audio(`sounds/themes/${theme}/delete.mp3`),
+    return: new Audio(`sounds/themes/${theme}/return.mp3`),
+    space: new Audio(`sounds/themes/${theme}/space.mp3`),
     type: []
   };
 
   // Load multiple type sounds (type1–type10)
-  let typeCount = 0;
-  for (let i = 1; i <= 10; i++) {
-    const typePath = getSupportedAudioPath(`sounds/themes/${theme}/type${i}`);
-    const sound = new Audio(typePath);
+  for (let i = 1; i <= 20; i++) {
+    const sound = new Audio(`sounds/themes/${theme}/type${i}.mp3`);
     sound.addEventListener("canplaythrough", () => {
       sounds.type.push(sound);
     });
     sound.load();
-    typeCount++;
   }
 
-  // Fallback: type.ogg/.mp3 if no variants load
+  // Fallback: type.mp3 if no variants load
   setTimeout(() => {
     if (sounds.type.length === 0) {
-      const fallback = new Audio(getSupportedAudioPath(`sounds/themes/${theme}/type`));
+      const fallback = new Audio(`sounds/themes/${theme}/type.mp3`);
       fallback.load();
       sounds.type.push(fallback);
     }
@@ -128,7 +115,6 @@ window.addEventListener('DOMContentLoaded', () => {
     loadTheme(themeSelect.value);
   });
 
-  // Sort projects alphabetically
   items.sort((a, b) => a.textContent.localeCompare(b.textContent));
   items.forEach(item => ul.appendChild(item));
 
