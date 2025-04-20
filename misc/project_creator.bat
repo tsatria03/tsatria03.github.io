@@ -75,7 +75,7 @@ for /L %%i in (0,1,16) do (
         echo   ^<h1^>!name!^</h1^>
         echo   ^<p^>!desc!^</p^>
         echo   ^<p^>^<a href="https://github.com/tsatria03/!name!/releases/latest"^>View Latest Repository Release^</a^>^</p^>
-        echo   ^<p^>^<a href="https://github.com/tsatria03/!name!"^>View Repository Source^</a^>^</p^>
+        echo   ^<p^>^<a href="https://github.com/tsatria03/!name!"^>View Latest Repository Source^</a^>^</p^>
         echo ^</body^>
         echo ^</html^>
     )
