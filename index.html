@@ -4,21 +4,47 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Projects - tsatria03</title>
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const ul = document.querySelector('ul');
-    const items = Array.from(ul.querySelectorAll('li'));
 
-    items.sort((a, b) => {
-      const textA = a.textContent.toLowerCase();
-      const textB = b.textContent.toLowerCase();
-      return textA.localeCompare(textB);
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const ul = document.querySelector('ul');
+      const items = Array.from(ul.querySelectorAll('li'));
+
+      // Sort the items alphabetically
+      items.sort((a, b) => {
+        const textA = a.textContent.toLowerCase();
+        const textB = b.textContent.toLowerCase();
+        return textA.localeCompare(textB);
+      });
+      items.forEach(item => ul.appendChild(item));
+
+      // Search logic
+      const searchInput = document.getElementById('searchBox');
+      searchInput.addEventListener('input', () => {
+        const query = searchInput.value.toLowerCase();
+        items.forEach(item => {
+          const text = item.textContent.toLowerCase();
+          item.style.display = text.includes(query) ? '' : 'none';
+        });
+      });
     });
+  </script>
 
-    items.forEach(item => ul.appendChild(item));
-  });
-</script>
+  <style>
+    #searchLabel {
+      font-weight: bold;
+    }
+    #searchBox {
+      margin: 0.5em 0 1em 0;
+      padding: 0.3em;
+      width: 100%;
+      max-width: 400px;
+      font-size: 1em;
+    }
+  </style>
+
 </head>
+
 <body>
   <h1>Introduction</h1>
   <p>
@@ -34,6 +60,10 @@
   </p>
 
   <h2>Available Projects</h2>
+
+  <label id="searchLabel" for="searchBox">Search projects:</label><br>
+  <input id="searchBox" type="text" aria-labelledby="searchLabel" placeholder="Type to filter the list..." />
+
   <ul>
     <li><a href="projects/AnonymousChatClient/">AnonymousChatClient</a></li>
     <li><a href="projects/CookyCraze/">CookyCraze</a></li>
@@ -53,5 +83,6 @@
     <li><a href="projects/WheelSpinner/">WheelSpinner</a></li>
     <li><a href="projects/YoutubeDownloader/">YoutubeDownloader</a></li>
   </ul>
+
 </body>
 </html>
