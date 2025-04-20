@@ -1,4 +1,15 @@
-//Keyboard Sound Theme Loader
+// Audio format support helper
+function getSupportedAudioPath(basePath) {
+  const audio = document.createElement("audio");
+  return audio.canPlayType("audio/ogg") ? basePath + ".ogg" : basePath + ".mp3";
+}
+
+// Detect if the user is on a mobile device
+function isMobile() {
+  return /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+}
+
+// Typing sound loader
 let sounds = {};
 let theme = "keyboard1";
 
@@ -7,33 +18,33 @@ function loadTheme(themeName) {
   localStorage.setItem("theme", theme);
 
   sounds = {
-    cap: new Audio(`sounds/themes/${theme}/cap.mp3`),
-    delete: new Audio(`sounds/themes/${theme}/delete.mp3`),
-    return: new Audio(`sounds/themes/${theme}/return.mp3`),
-    space: new Audio(`sounds/themes/${theme}/space.mp3`),
+    cap: new Audio(getSupportedAudioPath(`sounds/themes/${theme}/cap`)),
+    delete: new Audio(getSupportedAudioPath(`sounds/themes/${theme}/delete`)),
+    return: new Audio(getSupportedAudioPath(`sounds/themes/${theme}/return`)),
+    space: new Audio(getSupportedAudioPath(`sounds/themes/${theme}/space`)),
     type: []
   };
 
-  // Load multiple type sounds (type1–type10)
+  // Load multiple type sounds (type1–type20)
   for (let i = 1; i <= 20; i++) {
-    const sound = new Audio(`sounds/themes/${theme}/type${i}.mp3`);
+    const sound = new Audio(getSupportedAudioPath(`sounds/themes/${theme}/type${i}`));
     sound.addEventListener("canplaythrough", () => {
       sounds.type.push(sound);
     });
     sound.load();
   }
 
-  // Fallback: type.mp3 if no variants load
+  // Fallback if no type sounds work
   setTimeout(() => {
     if (sounds.type.length === 0) {
-      const fallback = new Audio(`sounds/themes/${theme}/type.mp3`);
+      const fallback = new Audio(getSupportedAudioPath(`sounds/themes/${theme}/type`));
       fallback.load();
       sounds.type.push(fallback);
     }
   }, 500);
 }
 
-//Typing Sound Playback
+// Play typing sounds
 function playSound(type) {
   if (!sounds || !sounds[type]) return;
 
@@ -47,6 +58,7 @@ function playSound(type) {
   }
 }
 
+// Setup sound playback on typing
 function setupTypingSounds() {
   const input = document.getElementById("searchBox");
   input.addEventListener("keydown", e => {
@@ -63,7 +75,7 @@ function setupTypingSounds() {
   });
 }
 
-//Load Theme List (keyboard1–20)
+// Populate theme selector with keyboard1–keyboard20
 function listThemes() {
   const select = document.getElementById("themeSelect");
   for (let i = 1; i <= 20; i++) {
@@ -79,7 +91,7 @@ function listThemes() {
   loadTheme(savedTheme);
 }
 
-//Project List Filtering
+// Update filtered results
 function updateResults() {
   const query = searchBox.value.trim().toLowerCase();
   let matchCount = 0;
@@ -99,7 +111,7 @@ function updateResults() {
       : `${matchCount} result${matchCount !== 1 ? 's' : ''} found for “${query}”.`;
 }
 
-//Page Initialization
+// Initialization
 let items = [];
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -110,10 +122,18 @@ window.addEventListener('DOMContentLoaded', () => {
   const clearBtn = document.getElementById('clearBtn');
   const resultCount = document.getElementById('resultCount');
   const themeSelect = document.getElementById("themeSelect");
+  const themeContainer = document.getElementById("themeContainer");
 
-  themeSelect.addEventListener("change", () => {
-    loadTheme(themeSelect.value);
-  });
+  // Hide typing sound controls on mobile
+  if (isMobile()) {
+    if (themeContainer) themeContainer.style.display = "none";
+  } else {
+    themeSelect.addEventListener("change", () => {
+      loadTheme(themeSelect.value);
+    });
+    listThemes();
+    setupTypingSounds();
+  }
 
   items.sort((a, b) => a.textContent.localeCompare(b.textContent));
   items.forEach(item => ul.appendChild(item));
@@ -126,7 +146,5 @@ window.addEventListener('DOMContentLoaded', () => {
     searchBox.focus();
   });
 
-  listThemes();
-  setupTypingSounds();
   updateResults();
 });
