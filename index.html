@@ -1,82 +1,11 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Projects - tsatria03</title>
-
-  <style>
-    #searchBox {
-      padding: 0.3em;
-      width: 300px;
-      font-size: 1em;
-    }
-    #searchControls {
-      margin-bottom: 1em;
-    }
-    #searchBtn, #clearBtn {
-      margin-left: 0.5em;
-      font-size: 1em;
-      padding: 0.3em 0.6em;
-    }
-    #resultCount {
-      margin: 0.5em 0 1em 0;
-      font-weight: bold;
-    }
-  </style>
-
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const ul = document.querySelector('ul');
-      const items = Array.from(ul.querySelectorAll('li'));
-      const searchBox = document.getElementById('searchBox');
-      const searchBtn = document.getElementById('searchBtn');
-      const clearBtn = document.getElementById('clearBtn');
-      const resultCount = document.getElementById('resultCount');
-
-      // Sort items A-Z
-      items.sort((a, b) => {
-        const textA = a.textContent.toLowerCase();
-        const textB = b.textContent.toLowerCase();
-        return textA.localeCompare(textB);
-      });
-      items.forEach(item => ul.appendChild(item));
-
-      function updateResults() {
-        const query = searchBox.value.trim().toLowerCase();
-        let matchCount = 0;
-
-        items.forEach(item => {
-          const text = item.textContent.toLowerCase();
-          const match = text.includes(query);
-          item.style.display = match ? '' : 'none';
-          if (match) matchCount++;
-        });
-
-        if (query === '') {
-          resultCount.textContent = 'Showing all projects.';
-        } else if (matchCount === 0) {
-          resultCount.textContent = `No results found for “${query}”.`;
-        } else {
-          resultCount.textContent = `${matchCount} result${matchCount !== 1 ? 's' : ''} found for “${query}”.`;
-        }
-      }
-
-      searchBox.addEventListener('input', updateResults);
-      searchBtn.addEventListener('click', updateResults);
-
-      clearBtn.addEventListener('click', () => {
-        searchBox.value = '';
-        updateResults();
-        searchBox.focus();
-      });
-
-      updateResults(); // Initial run
-    });
-  </script>
-
+  <link rel="stylesheet" href="index.css" />
 </head>
-
 <body>
   <h1>Introduction</h1>
   <p>
@@ -94,10 +23,13 @@
   <h2>Available Projects</h2>
 
   <div id="searchControls">
+    <label for="themeSelect"><strong>Keyboard Theme:</strong></label><br>
+    <select id="themeSelect" aria-label="Keyboard theme selection"></select><br><br>
+
     <label for="searchBox"><strong>Search projects:</strong></label><br>
     <input id="searchBox" type="text" aria-label="Search projects" placeholder="Type to filter the list..." /><br>
-    <button id="clearBtn">Clear</button><br>
-    <button id="searchBtn">Search</button><br>
+    <button id="clearBtn">Clear</button>
+    <button id="searchBtn">Search</button>
     <div id="resultCount" aria-live="polite"></div>
   </div>
 
@@ -121,5 +53,6 @@
     <li><a href="projects/YoutubeDownloader/">YoutubeDownloader</a></li>
   </ul>
 
+  <script src="index.js"></script>
 </body>
 </html>
