@@ -4,6 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Projects - tsatria03</title>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const ul = document.querySelector('ul');
+    const items = Array.from(ul.querySelectorAll('li'));
+
+    items.sort((a, b) => {
+      const textA = a.textContent.toLowerCase();
+      const textB = b.textContent.toLowerCase();
+      return textA.localeCompare(textB);
+    });
+
+    items.forEach(item => ul.appendChild(item));
+  });
+</script>
 </head>
 <body>
   <h1>Introduction</h1>
@@ -19,60 +33,25 @@
     Some of these were made using the BGT/NVGT programming language, therefore you are held responsible for any harm done to your computer while utilizing these games and programs.
   </p>
 
-  <h2>Source Code Repositories</h2>
-
-  <h3>YoutubeDownloader</h3>
-  <a href="projects/YoutubeDownloader/">View Project Page</a>
-
-  <h3>DiceRoler</h3>
-  <a href="projects/DiceRoler/">View Project Page</a>
-
-  <h3>ToyMania</h3>
-  <a href="projects/ToyMania/">View Project Page</a>
-
-  <h3>WheelSpinner</h3>
-  <a href="projects/WheelSpinner/">View Project Page</a>
-
-  <h3>WeaponSimulator</h3>
-  <a href="projects/WeaponSimulator/">View Project Page</a>
-
-  <h3>TileSimulator</h3>
-  <a href="projects/TileSimulator/">View Project Page</a>
-
-  <h3>SixthSenceRemake</h3>
-  <a href="projects/SixthSenceRemake/">View Project Page</a>
-
-  <h3>CookyCraze</h3>
-  <a href="projects/CookyCraze/">View Project Page</a>
-
-  <h3>InstrumentSimulator</h3>
-  <a href="projects/InstrumentSimulator/">View Project Page</a>
-
-  <h3>SimpleFighter</h3>
-  <a href="projects/SimpleFighter/">View Project Page</a>
-
-  <h3>MusicPlayerRemake</h3>
-  <a href="projects/MusicPlayerRemake/">View Project Page</a>
-
-  <h3>EasyCcalculator</h3>
-  <a href="projects/EasyCcalculator/">View Project Page</a>
-
-  <h3>AnonymousChatClient</h3>
-  <a href="projects/AnonymousChatClient/">View Project Page</a>
-
-  <h3>SimpleFighterWeaponsMaker</h3>
-  <a href="projects/SimpleFighterWeaponsMaker/">View Project Page</a>
-
-  <h3>DtmfTonesPlayer</h3>
-  <a href="projects/DtmfTonesPlayer/">View Project Page</a>
-
-  <h3>ScenarioGenerator</h3>
-  <a href="projects/ScenarioGenerator/">View Project Page</a>
-
-  <h3>ToneGenerator</h3>
-  <a href="projects/ToneGenerator/">View Project Page</a>
-
-  <h2>Project Releases</h2>
-  <p>Nothing here yet. Please check back later.</p>
+  <h2>Available Projects</h2>
+  <ul>
+    <li><a href="projects/AnonymousChatClient/">AnonymousChatClient</a></li>
+    <li><a href="projects/CookyCraze/">CookyCraze</a></li>
+    <li><a href="projects/DiceRoler/">DiceRoler</a></li>
+    <li><a href="projects/DtmfTonesPlayer/">DtmfTonesPlayer</a></li>
+    <li><a href="projects/EasyCcalculator/">EasyCcalculator</a></li>
+    <li><a href="projects/InstrumentSimulator/">InstrumentSimulator</a></li>
+    <li><a href="projects/MusicPlayerRemake/">MusicPlayerRemake</a></li>
+    <li><a href="projects/ScenarioGenerator/">ScenarioGenerator</a></li>
+    <li><a href="projects/SimpleFighter/">SimpleFighter</a></li>
+    <li><a href="projects/SimpleFighterWeaponsMaker/">SimpleFighterWeaponsMaker</a></li>
+    <li><a href="projects/SixthSenceRemake/">SixthSenceRemake</a></li>
+    <li><a href="projects/TileSimulator/">TileSimulator</a></li>
+    <li><a href="projects/ToneGenerator/">ToneGenerator</a></li>
+    <li><a href="projects/ToyMania/">ToyMania</a></li>
+    <li><a href="projects/WeaponSimulator/">WeaponSimulator</a></li>
+    <li><a href="projects/WheelSpinner/">WheelSpinner</a></li>
+    <li><a href="projects/YoutubeDownloader/">YoutubeDownloader</a></li>
+  </ul>
 </body>
 </html>
