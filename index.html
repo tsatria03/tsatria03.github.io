@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Projects</title>
+<script src="scripts/index.js" defer></script>
   <link rel="stylesheet" href="scripts/index.css" />
 </head>
 <body>
@@ -21,11 +22,11 @@
   </p>
 
   <h2>Available Projects: 17</h2>
-
-  <script src="scripts/index.js"></script>
   <div id="searchControls">
-    <label for="themeSelect"><strong>Keyboard Theme:</strong></label><br>
-    <select id="themeSelect" aria-label="Keyboard theme selection"></select><br>
+    <div id="themeContainer">
+      <label for="themeSelect"><strong>Keyboard Theme:</strong></label><br>
+      <select id="themeSelect" aria-label="Keyboard theme selection"></select><br>
+    </div>
 
     <label for="searchBox"><strong>Search projects:</strong></label><br>
     <input id="searchBox" type="text" aria-label="Search projects" placeholder="Type to filter the list..." /><br>
@@ -54,10 +55,10 @@
     <li><a href="projects/YoutubeDownloader/">YoutubeDownloader: made in Python</a></li>
   </ul>
 
-<h3>Miscellaneous Links</h3>
-<ul>
-  <li><a href="misc/index.html">Visit the Miscellaneous Page</a></li>
-</ul>
+  <h3>Miscellaneous Links</h3>
+  <ul>
+    <li><a href="misc/index.html">Visit the Miscellaneous Page</a></li>
+  </ul>
 
 </body>
 </html>
