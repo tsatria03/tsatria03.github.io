@@ -100,6 +100,28 @@ function updateResults() {
       : `${matchCount} result${matchCount !== 1 ? 's' : ''} found for “${query}”.`;
 }
 
+function loadClickCounts() {
+  const siteId = 'tsatria03.github.io';
+  const period = '30d';
+  const endpoint = `https://plausible.io/api/v1/stats/breakdown?site_id=${siteId}&period=${period}&property=event:project_click&metrics=events`;
+
+  fetch(endpoint)
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.results) {
+        data.results.forEach(item => {
+          const name = item.project;
+          const count = item.events;
+          const span = document.getElementById(`click-${name}`);
+          if (span) span.textContent = count;
+        });
+      }
+    })
+    .catch(err => {
+      console.error("Plausible click count fetch failed:", err);
+    });
+}
+
 let items = [];
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -114,9 +136,11 @@ window.addEventListener('DOMContentLoaded', () => {
   const searchContainer = document.getElementById("searchContainer");
   const toggleSettings = document.getElementById("toggleSettings");
 
-  toggleSettings.addEventListener("click", () => {
-    themeContainer.style.display = themeContainer.style.display === "none" ? "" : "none";
-  });
+  if (toggleSettings) {
+    toggleSettings.addEventListener("click", () => {
+      themeContainer.style.display = themeContainer.style.display === "none" ? "" : "none";
+    });
+  }
 
   if (!isMobile()) {
     themeSelect.addEventListener("change", () => loadTheme(themeSelect.value));
@@ -134,9 +158,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
   items.sort((a, b) => a.textContent.localeCompare(b.textContent));
   items.forEach(item => ul.appendChild(item));
-  updateResults();
 
+  updateResults();
   handleOrientationChange();
+  loadClickCounts();
 });
 
 window.addEventListener("resize", handleOrientationChange);
