@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>My Projects</title>
-<link rel="stylesheet" href="scripts/index.css" />
-<script defer data-domain="tsatria03.github.io" src="https://plausible.io/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"></script>
+  <title>My Projects</title>
+  <link rel="stylesheet" href="styles/index.css" />
+  <script defer data-domain="tsatria03.github.io"
+          src="https://plausible.io/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js">
+  </script>
 
-<script>
-  window.plausible = window.plausible || function() {
-    (window.plausible.q = window.plausible.q || []).push(arguments)
-  }
-</script>
+  <script>
+    window.plausible = window.plausible || function() {
+      (window.plausible.q = window.plausible.q || []).push(arguments);
+    };
+  </script>
 
 </head>
 
@@ -36,72 +38,77 @@
     <input id="searchBox" type="text" aria-label="Search projects" placeholder="Type to filter the list..." /><br>
     <button id="clearBtn">Clear</button><br>
     <button id="searchBtn">Search</button><br>
-  <button id="toggleSettings">Show or hide Keyboard Settings</button>
-  <div id="themeContainer" style="display: none;">
-    <label for="themeSelect"><strong>Keyboard Theme:</strong></label><br>
-    <select id="themeSelect" aria-label="Keyboard theme selection"></select><br>
-  </div>
+
+    <button id="toggleSettings">Show or hide Keyboard Settings</button>
+    <div id="themeContainer" style="display: none;">
+      <label for="themeSelect"><strong>Keyboard Theme:</strong></label><br>
+      <select id="themeSelect" aria-label="Keyboard theme selection"></select><br>
+    </div>
 
     <div id="resultCount" aria-live="polite"></div>
   </div>
 
-<ul>
-  <li>
-    <a href="projects/CookyCraze/" onclick="plausible('project_click', {props: {project: 'CookyCraze'}})">CookyCraze: made in NVGT</a>
-    — Clicked <span id="click-CookyCraze">0</span> times.
-  </li>
+  <ul id="projectList">
+    <li data-project="CookyCraze">
+      <a href="projects/CookyCraze/">CookyCraze: made in NVGT</a>
+      — Clicked <span id="click-CookyCraze">0</span> times.
+    </li>
 
-  <li>
-    <a href="projects/DiceRoler/" onclick="plausible('project_click', {props: {project: 'DiceRoler'}})">DiceRoler: made in NVGT</a>
-    — Clicked <span id="click-DiceRoler">0</span> times.
-  </li>
+    <li data-project="DiceRoler">
+      <a href="projects/DiceRoler/">DiceRoler: made in NVGT</a>
+      — Clicked <span id="click-DiceRoler">0</span> times.
+    </li>
 
-  <li>
-    <a href="projects/InstrumentSimulator/" onclick="plausible('project_click', {props: {project: 'InstrumentSimulator'}})">InstrumentSimulator: made in NVGT</a>
-    — Clicked <span id="click-InstrumentSimulator">0</span> times.
-  </li>
+    <li data-project="InstrumentSimulator">
+      <a href="projects/InstrumentSimulator/">InstrumentSimulator: made in NVGT</a>
+      — Clicked <span id="click-InstrumentSimulator">0</span> times.
+    </li>
 
-  <li>
-    <a href="projects/MusicPlayerRemake/" onclick="plausible('project_click', {props: {project: 'MusicPlayerRemake'}})">MusicPlayerRemake: made in NVGT</a>
-    — Clicked <span id="click-MusicPlayerRemake">0</span> times.
-  </li>
+    <li data-project="MusicPlayerRemake">
+      <a href="projects/MusicPlayerRemake/">MusicPlayerRemake: made in NVGT</a>
+      — Clicked <span id="click-MusicPlayerRemake">0</span> times.
+    </li>
 
-  <li>
-    <a href="projects/SimpleFighter/" onclick="plausible('project_click', {props: {project: 'SimpleFighter'}})">SimpleFighter: made in NVGT</a>
-    — Clicked <span id="click-SimpleFighter">0</span> times.
-  </li>
+    <li data-project="SimpleFighter">
+      <a href="projects/SimpleFighter/">SimpleFighter: made in NVGT</a>
+      — Clicked <span id="click-SimpleFighter">0</span> times.
+    </li>
 
-  <li>
-    <a href="projects/SixthSenceRemake/" onclick="plausible('project_click', {props: {project: 'SixthSenceRemake'}})">SixthSenceRemake: made in NVGT</a>
-    — Clicked <span id="click-SixthSenceRemake">0</span> times.
-  </li>
+    <li data-project="SixthSenceRemake">
+      <a href="projects/SixthSenceRemake/">SixthSenceRemake: made in NVGT</a>
+      — Clicked <span id="click-SixthSenceRemake">0</span> times.
+    </li>
 
-  <li>
-    <a href="projects/TileSimulator/" onclick="plausible('project_click', {props: {project: 'TileSimulator'}})">TileSimulator: made in BGT</a>
-    — Clicked <span id="click-TileSimulator">0</span> times.
-  </li>
+    <li data-project="TileSimulator">
+      <a href="projects/TileSimulator/">TileSimulator: made in BGT</a>
+      — Clicked <span id="click-TileSimulator">0</span> times.
+    </li>
 
-  <li>
-    <a href="projects/ToyMania/" onclick="plausible('project_click', {props: {project: 'ToyMania'}})">ToyMania: made in NVGT</a>
-    — Clicked <span id="click-ToyMania">0</span> times.
-  </li>
+    <li data-project="ToyMania">
+      <a href="projects/ToyMania/">ToyMania: made in NVGT</a>
+      — Clicked <span id="click-ToyMania">0</span> times.
+    </li>
 
-  <li>
-    <a href="projects/WeaponSimulator/" onclick="plausible('project_click', {props: {project: 'WeaponSimulator'}})">WeaponSimulator: made in BGT</a>
-    — Clicked <span id="click-WeaponSimulator">0</span> times.
-  </li>
+    <li data-project="WeaponSimulator">
+      <a href="projects/WeaponSimulator/">WeaponSimulator: made in BGT</a>
+      — Clicked <span id="click-WeaponSimulator">0</span> times.
+    </li>
 
-  <li>
-    <a href="projects/WheelSpinner/" onclick="plausible('project_click', {props: {project: 'WheelSpinner'}})">WheelSpinner: made in NVGT</a>
-    — Clicked <span id="click-WheelSpinner">0</span> times.
-  </li>
-</ul>
+    <li data-project="WheelSpinner">
+      <a href="projects/WheelSpinner/">WheelSpinner: made in NVGT</a>
+      — Clicked <span id="click-WheelSpinner">0</span> times.
+    </li>
+  </ul>
 
   <h3>Miscellaneous Links</h3>
   <ul>
     <li><a href="misc/index.html">Visit the Miscellaneous Page</a></li>
   </ul>
 
+  <script src="scripts/utils.js" defer></script>
+  <script src="scripts/sound.js" defer></script>
+  <script src="scripts/search.js" defer></script>
+  <script src="scripts/analytics.js" defer></script>
   <script src="scripts/index.js" defer></script>
 </body>
 </html>
