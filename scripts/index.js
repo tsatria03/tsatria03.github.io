@@ -5,12 +5,11 @@ function isMobile() {
 function handleOrientationChange() {
   const themeContainer = document.getElementById("themeContainer");
   const searchContainer = document.getElementById("searchContainer");
-
   const isLandscape = window.innerWidth > window.innerHeight;
 
   if (isMobile()) {
-    if (themeContainer) themeContainer.style.display = isLandscape ? "" : "none";
-    if (searchContainer) searchContainer.style.display = isLandscape ? "" : "none";
+    searchContainer.style.display = isLandscape ? "" : "none";
+    themeContainer.style.display = isLandscape ? "" : "none";
   }
 }
 
@@ -48,14 +47,11 @@ function loadTheme(themeName) {
 
 function playSound(type) {
   if (!sounds || !sounds[type]) return;
-  if (type === "type") {
-    const clip = sounds.type[Math.floor(Math.random() * sounds.type.length)];
-    clip.currentTime = 0;
-    clip.play();
-  } else {
-    sounds[type].currentTime = 0;
-    sounds[type].play();
-  }
+  const clip = type === "type"
+    ? sounds.type[Math.floor(Math.random() * sounds.type.length)]
+    : sounds[type];
+  clip.currentTime = 0;
+  clip.play();
 }
 
 function setupTypingSounds() {
@@ -65,11 +61,7 @@ function setupTypingSounds() {
     if (e.key === "Enter") return playSound("return");
     if (e.key === "Backspace" || e.key === "Delete") return playSound("delete");
     if (e.key.length === 1) {
-      if (e.key === e.key.toUpperCase() && e.key.match(/[A-Z]/)) {
-        playSound("cap");
-      } else {
-        playSound("type");
-      }
+      playSound(e.key === e.key.toUpperCase() && /[A-Z]/.test(e.key) ? "cap" : "type");
     }
   });
 }
@@ -120,11 +112,14 @@ window.addEventListener('DOMContentLoaded', () => {
   const themeSelect = document.getElementById("themeSelect");
   const themeContainer = document.getElementById("themeContainer");
   const searchContainer = document.getElementById("searchContainer");
+  const toggleSettings = document.getElementById("toggleSettings");
+
+  toggleSettings.addEventListener("click", () => {
+    themeContainer.style.display = themeContainer.style.display === "none" ? "" : "none";
+  });
 
   if (!isMobile()) {
-    themeSelect.addEventListener("change", () => {
-      loadTheme(themeSelect.value);
-    });
+    themeSelect.addEventListener("change", () => loadTheme(themeSelect.value));
     listThemes();
     setupTypingSounds();
 
