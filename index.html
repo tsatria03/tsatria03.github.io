@@ -22,18 +22,19 @@
 
   <h2>Available Projects</h2>
 
-  <div id="searchContainer">
-    <div id="themeContainer">
-      <label for="themeSelect"><strong>Keyboard Theme:</strong></label><br>
-      <select id="themeSelect" aria-label="Keyboard theme selection"></select><br>
-    </div>
+<div id="searchContainer">
+  <label for="searchBox"><strong>Search projects:</strong></label><br>
+  <input id="searchBox" type="text" aria-label="Search projects" placeholder="Type to filter the list..." /><br>
 
-    <label for="searchBox"><strong>Search projects:</strong></label><br>
-    <input id="searchBox" type="text" aria-label="Search projects" placeholder="Type to filter the list..." /><br>
-    <button id="clearBtn">Clear</button><br>
-    <button id="searchBtn">Search</button><br>
-    <div id="resultCount" aria-live="polite"></div>
+  <div id="themeContainer">
+    <label for="themeSelect"><strong>Keyboard Theme:</strong></label><br>
+    <select id="themeSelect" aria-label="Keyboard theme selection"></select><br>
   </div>
+
+  <button id="clearBtn">Clear</button><br>
+  <button id="searchBtn">Search</button><br>
+  <div id="resultCount" aria-live="polite"></div>
+</div>
 
   <ul>
     <li><a href="projects/CookyCraze/">CookyCraze: made in NVGT</a></li>
