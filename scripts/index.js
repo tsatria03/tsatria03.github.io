@@ -1,9 +1,7 @@
-// Mobile detection
 function isMobile() {
   return /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
 }
 
-// Typing sound loader
 let sounds = {};
 let theme = "keyboard1";
 
@@ -27,7 +25,6 @@ function loadTheme(themeName) {
     sound.load();
   }
 
-  // Fallback: load base type.mp3 if no variants available
   setTimeout(() => {
     if (sounds.type.length === 0) {
       const fallback = new Audio(`sounds/themes/${theme}/type.mp3`);
@@ -37,7 +34,6 @@ function loadTheme(themeName) {
   }, 500);
 }
 
-// Sound playback
 function playSound(type) {
   if (!sounds || !sounds[type]) return;
   if (type === "type") {
@@ -50,7 +46,6 @@ function playSound(type) {
   }
 }
 
-// Setup typing sound on search box
 function setupTypingSounds() {
   const input = document.getElementById("searchBox");
   input.addEventListener("keydown", e => {
@@ -67,7 +62,6 @@ function setupTypingSounds() {
   });
 }
 
-// Theme selector dropdown
 function listThemes() {
   const select = document.getElementById("themeSelect");
   for (let i = 1; i <= 20; i++) {
@@ -83,7 +77,6 @@ function listThemes() {
   loadTheme(savedTheme);
 }
 
-// Project search filter
 function updateResults() {
   const query = searchBox.value.trim().toLowerCase();
   let matchCount = 0;
@@ -103,7 +96,6 @@ function updateResults() {
       : `${matchCount} result${matchCount !== 1 ? 's' : ''} found for “${query}”.`;
 }
 
-// Startup
 let items = [];
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -115,27 +107,28 @@ window.addEventListener('DOMContentLoaded', () => {
   const resultCount = document.getElementById('resultCount');
   const themeSelect = document.getElementById("themeSelect");
   const themeContainer = document.getElementById("themeContainer");
+  const searchContainer = document.getElementById("searchContainer");
 
   if (isMobile()) {
     if (themeContainer) themeContainer.style.display = "none";
+    if (searchContainer) searchContainer.style.display = "none";
   } else {
     themeSelect.addEventListener("change", () => {
       loadTheme(themeSelect.value);
     });
     listThemes();
     setupTypingSounds();
+
+    searchBox.addEventListener('input', updateResults);
+    searchBtn.addEventListener('click', updateResults);
+    clearBtn.addEventListener('click', () => {
+      searchBox.value = '';
+      updateResults();
+      searchBox.focus();
+    });
   }
 
   items.sort((a, b) => a.textContent.localeCompare(b.textContent));
   items.forEach(item => ul.appendChild(item));
-
-  searchBox.addEventListener('input', updateResults);
-  searchBtn.addEventListener('click', updateResults);
-  clearBtn.addEventListener('click', () => {
-    searchBox.value = '';
-    updateResults();
-    searchBox.focus();
-  });
-
   updateResults();
 });
