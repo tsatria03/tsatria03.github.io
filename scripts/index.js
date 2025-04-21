@@ -2,6 +2,18 @@ function isMobile() {
   return /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
 }
 
+function handleOrientationChange() {
+  const themeContainer = document.getElementById("themeContainer");
+  const searchContainer = document.getElementById("searchContainer");
+
+  const isLandscape = window.innerWidth > window.innerHeight;
+
+  if (isMobile()) {
+    if (themeContainer) themeContainer.style.display = isLandscape ? "" : "none";
+    if (searchContainer) searchContainer.style.display = isLandscape ? "" : "none";
+  }
+}
+
 let sounds = {};
 let theme = "keyboard1";
 
@@ -109,10 +121,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const themeContainer = document.getElementById("themeContainer");
   const searchContainer = document.getElementById("searchContainer");
 
-  if (isMobile()) {
-    if (themeContainer) themeContainer.style.display = "none";
-    if (searchContainer) searchContainer.style.display = "none";
-  } else {
+  if (!isMobile()) {
     themeSelect.addEventListener("change", () => {
       loadTheme(themeSelect.value);
     });
@@ -131,4 +140,9 @@ window.addEventListener('DOMContentLoaded', () => {
   items.sort((a, b) => a.textContent.localeCompare(b.textContent));
   items.forEach(item => ul.appendChild(item));
   updateResults();
+
+  handleOrientationChange();
 });
+
+window.addEventListener("resize", handleOrientationChange);
+window.addEventListener("orientationchange", handleOrientationChange);
