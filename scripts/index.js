@@ -13,8 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (toggleSettings) {
     toggleSettings.addEventListener("click", () => {
-      themeContainer.style.display = themeContainer.style.display === "none" ? "" : "none";
+      const isHidden = themeContainer.style.display === "none";
+      themeContainer.style.display = isHidden ? "" : "none";
+      toggleSettings.textContent = isHidden ? "Hide Keyboard Settings" : "Show Keyboard Settings";
     });
+
+    // Set initial label based on visibility
+    const isHidden = themeContainer.style.display === "none";
+    toggleSettings.textContent = isHidden ? "Show Keyboard Settings" : "Hide Keyboard Settings";
   }
 
   if (!isMobile()) {
