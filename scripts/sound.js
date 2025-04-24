@@ -6,15 +6,15 @@ function loadTheme(themeName) {
   localStorage.setItem("theme", theme);
 
   sounds = {
-    cap: new Audio(`misc/sounds/themes/${theme}/cap.mp3`),
-    delete: new Audio(`misc/sounds/themes/${theme}/delete.mp3`),
-    return: new Audio(`misc/sounds/themes/${theme}/return.mp3`),
-    space: new Audio(`misc/sounds/themes/${theme}/space.mp3`),
+    cap: new Audio(`sounds/themes/${theme}/cap.mp3`),
+    delete: new Audio(`sounds/themes/${theme}/delete.mp3`),
+    return: new Audio(`sounds/themes/${theme}/return.mp3`),
+    space: new Audio(`sounds/themes/${theme}/space.mp3`),
     type: []
   };
 
   for (let i = 1; i <= 20; i++) {
-    const sound = new Audio(`misc/sounds/themes/${theme}/type${i}.mp3`);
+    const sound = new Audio(`sounds/themes/${theme}/type${i}.mp3`);
     sound.addEventListener("canplaythrough", () => {
       sounds.type.push(sound);
     });
@@ -23,7 +23,7 @@ function loadTheme(themeName) {
 
   setTimeout(() => {
     if (sounds.type.length === 0) {
-      const fallback = new Audio(`misc/sounds/themes/${theme}/type.mp3`);
+      const fallback = new Audio(`sounds/themes/${theme}/type.mp3`);
       fallback.load();
       sounds.type.push(fallback);
     }
