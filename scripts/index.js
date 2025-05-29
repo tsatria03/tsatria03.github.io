@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleSettings.textContent = isHidden ? "Hide Keyboard Settings" : "Show Keyboard Settings";
     });
 
-    // Set initial label based on visibility
     const isHidden = themeContainer.style.display === "none";
     toggleSettings.textContent = isHidden ? "Show Keyboard Settings" : "Hide Keyboard Settings";
   }
