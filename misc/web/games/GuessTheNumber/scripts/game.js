@@ -4,8 +4,7 @@ let minNumber;
 let maxNumber;
 function startGame()
 {
-    SoundModule.init();
-    SoundModule.play("sounds/start.mp3");
+    SoundModule.play("assets/audio/start.mp3");
     minNumber = parseInt(document.getElementById("min").value);
     maxNumber = parseInt(document.getElementById("max").value);
     triesLeft = parseInt(document.getElementById("tries").value);
@@ -28,7 +27,7 @@ function startGame()
 }
 function endGame()
 {
-    SoundModule.play("sounds/stop.mp3");
+    SoundModule.play("assets/audio/stop.mp3");
     setTimeout(function() {
         let again = confirm("Do you want to play again with the same settings? Press OK for yes. Press Cancel to change settings.");
         if (again)
@@ -78,12 +77,12 @@ function makeGuess()
     }
     if (guess < secretNumber)
     {
-        SoundModule.play("sounds/low.mp3");
+        SoundModule.play("assets/audio/low.mp3");
         setStatus("Too low. You have " + triesLeft + " tries left.");
     }
     else
     {
-        SoundModule.play("sounds/high.mp3");
+        SoundModule.play("assets/audio/high.mp3");
         setStatus("Too high. You have " + triesLeft + " tries left.");
     }
     guessBox.value = "";

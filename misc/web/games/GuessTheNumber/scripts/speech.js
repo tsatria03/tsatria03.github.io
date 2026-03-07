@@ -1,15 +1,24 @@
-function ScreenReaderSpeak(message)
+function ScreenReaderSpeak(msg)
 {
-    const notificationArea = document.getElementById('notification-area');
-    if (!notificationArea) return;
-    const existingAnnouncements = notificationArea.querySelectorAll('.sr-only-announcement');
-    existingAnnouncements.forEach(el => el.remove());
-    const announcement = document.createElement('span');
-    announcement.className = 'sr-only sr-only-announcement';
-    announcement.textContent = message;
-    notificationArea.appendChild(announcement);
-    setTimeout(() => announcement.remove(), 1000);
+    let region = document.getElementById("notification-area");
+    if (!region) {
+        region = document.createElement("div");
+        region.id = "notification-area";
+        region.setAttribute("aria-live", "assertive");
+        region.style.position = "absolute";
+        region.style.left = "-10000px";
+        region.style.top = "auto";
+        region.style.width = "1px";
+        region.style.height = "1px";
+        region.style.overflow = "hidden";
+        document.body.appendChild(region);
+    }
+    region.textContent = "";
+    setTimeout(() => {
+        region.textContent = msg;
+    }, 10);
 }
+
 function setStatus(text)
 {
     document.getElementById("statusText").innerText = text;

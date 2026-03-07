@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Guess The Number</title>
+
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="styles/graphics.css">
+
+<meta name="theme-color" content="#000000">
 
 </head>
 
@@ -45,11 +50,24 @@ Welcome to GuessTheNumber! The computer will pick a random number. Guess it befo
 
 </div>
 
-<div id="notification-area" aria-live="assertive"></div>
-
-<script src="scripts/game.js"></script>
 <script src="scripts/speech.js"></script>
 <script src="scripts/sound.js"></script>
+<script src="scripts/game.js"></script>
+
+<script>
+window.addEventListener("load", () => {
+
+    SoundModule.init();
+    SoundModule.preloadAll();
+
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("service-worker.js")
+            .then(() => console.log("Service worker registered"))
+            .catch(err => console.log("Service worker failed:", err));
+    }
+
+});
+</script>
 
 </body>
 </html>
