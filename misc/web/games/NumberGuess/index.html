@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Guess The Number</title>
+<link rel="stylesheet" href="styles/graphics.css">
+
+</head>
+
+<body>
+
+<h1>Guess The Number</h1>
+
+<p>
+The computer will pick a random number. Guess it before you run out of tries.
+</p>
+
+<div id="settingsArea">
+
+<h3>Game Settings</h3>
+
+<label for="min">Minimum number</label><br>
+<input type="number" id="min" value="1" min="1"><br><br>
+
+<label for="max">Maximum number</label><br>
+<input type="number" id="max" value="10" min="1"><br><br>
+
+<label for="tries">Number of tries</label><br>
+<input type="number" id="tries" value="5" min="1"><br><br>
+
+<button id="startButton" onclick="startGame()">Start Game</button>
+
+</div>
+
+<hr>
+
+<div id="gameArea" style="display:none">
+
+<p id="statusText"></p>
+
+<label for="guessInput">Enter your guess</label><br>
+<input type="number" id="guessInput" min="1">
+
+<button onclick="makeGuess()">Submit Guess</button>
+
+</div>
+
+<div id="notification-area" aria-live="assertive"></div>
+
+<script src="scripts/game.js"></script>
+<script src="scripts/speech.js"></script>
+<script src="scripts/sound.js"></script>
+
+</body>
+</html>
