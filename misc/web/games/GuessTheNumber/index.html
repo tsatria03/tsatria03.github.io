@@ -55,15 +55,29 @@ Welcome to GuessTheNumber! The computer will pick a random number. Guess it befo
 <script src="scripts/game.js"></script>
 
 <script>
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
 
     SoundModule.init();
     SoundModule.preloadAll();
 
     if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("./service-worker.js")
-            .then(() => console.log("Service worker registered"))
-            .catch(err => console.log("Service worker failed:", err));
+
+        try {
+
+            const response = await fetch("./version.txt");
+            const version = (await response.text()).trim();
+
+            navigator.serviceWorker.register("./service-worker.js?v=" + version)
+                .then(() => console.log("Service worker registered (version " + version + ")"))
+                .catch(err => console.log("Service worker failed:", err));
+
+        } catch (err) {
+
+            console.log("Could not load version.txt, registering worker without version.");
+            navigator.serviceWorker.register("./service-worker.js");
+
+        }
+
     }
 
 });

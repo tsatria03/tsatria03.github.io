@@ -1,4 +1,4 @@
-const CACHE_NAME = "guess-number-cache-v1";
+const CACHE_NAME = "guess-number-cache";
 
 const CORE_FILES = [
   "./",
