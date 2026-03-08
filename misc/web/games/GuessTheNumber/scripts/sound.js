@@ -1,8 +1,8 @@
 const SOUND_FILES = [
-    "sounds/start.mp3",
-    "sounds/stop.mp3",
-    "sounds/high.mp3",
-    "sounds/low.mp3"
+    "assets/audio/start.mp3",
+    "assets/audio/stop.mp3",
+    "assets/audio/high.mp3",
+    "assets/audio/low.mp3"
 ];
 const SoundModule = (function () {
     let audioContext = null;
