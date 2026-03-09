@@ -3,9 +3,9 @@ const CACHE_NAME = "guess-number-cache";
 const CORE_FILES = [
   "./",
   "./index.html",
-  "./scripts/game.js",
-  "./scripts/speech.js",
-  "./scripts/sound.js",
+  "./modules/game.js",
+  "./modules/speech.js",
+  "./modules/sound.js",
   "./styles/graphics.css",
   "./manifest.json",
   "./assets/icons/icon-192.png"
