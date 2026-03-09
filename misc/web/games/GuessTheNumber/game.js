@@ -101,7 +101,7 @@ function endGame()
     setTimeout(function()
     {
         const again = confirm(
-            "Do you want to play again with the same settings? Press OK to play again, press Cancel to return to the main menu."
+            "Do you want to play again with the same settings? Press OK to play again, or cancel to return to the main menu."
         );
         if (again)
         {
