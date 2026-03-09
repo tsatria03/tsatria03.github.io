@@ -38,7 +38,7 @@ function endGame()
         {
             document.getElementById("gameArea").style.display = "none";
             document.getElementById("settingsArea").style.display = "block";
-            setStatus("You can now change the settings and press Start Game.");
+            setStatus("You can now change the settings for the game.");
         }
     }, 1500);
 }
