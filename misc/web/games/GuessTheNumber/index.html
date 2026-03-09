@@ -9,10 +9,11 @@
 <link rel="stylesheet" href="style.css">
 
 <meta name="theme-color" content="#000000">
-
 </head>
 
 <body>
+
+<div id="menuScreen">
 
 <h1>GuessTheNumber</h1>
 
@@ -20,7 +21,12 @@
 Welcome to GuessTheNumber! The computer will pick a random number. Guess it before you run out of tries.
 </p>
 
-<div id="settingsArea">
+<button onclick="startGame()">Start Game</button><br>
+<button onclick="openSettings()">Change Settings</button><br><br>
+
+</div>
+
+<div id="settingsScreen" style="display:none;">
 
 <h3>Game Settings</h3>
 
@@ -33,20 +39,18 @@ Welcome to GuessTheNumber! The computer will pick a random number. Guess it befo
 <label for="tries">Number of tries</label><br>
 <input type="number" id="tries" value="5" min="1"><br><br>
 
-<button id="startButton" onclick="startGame()">Start Game</button>
+<button onclick="closeSettings()">Close</button><br><br>
 
 </div>
 
-<hr>
-
 <div id="gameArea" style="display:none">
 
-<p id="statusText"></p>
+<h1>GuessTheNumber</h1>
 
 <label for="guessInput">Enter your guess</label><br>
-<input type="number" id="guessInput" min="1">
+<input type="number" id="guessInput" min="1"><br>
 
-<button onclick="makeGuess()">Submit Guess</button>
+<button onclick="makeGuess()">Submit Guess</button><br><br>
 
 </div>
 
@@ -55,9 +59,12 @@ Welcome to GuessTheNumber! The computer will pick a random number. Guess it befo
 <script src="modules/sound.js"></script>
 
 <script>
+
 window.addEventListener("load", async () => {
+
     SoundModule.init();
     SoundModule.preloadAll();
+
     if ("serviceWorker" in navigator) {
         try {
             const response = await fetch("./version.txt");
@@ -70,7 +77,9 @@ window.addEventListener("load", async () => {
             navigator.serviceWorker.register("./service-worker.js");
         }
     }
-});
+}
+);
+
 </script>
 
 </body>
