@@ -3,10 +3,10 @@ const CACHE_NAME = "guess-number-cache";
 const CORE_FILES = [
   "./",
   "./index.html",
-  "./modules/game.js",
+  "./game.js",
   "./modules/speech.js",
   "./modules/sound.js",
-  "./styles/graphics.css",
+  "./style.css",
   "./manifest.json",
   "./assets/icons/icon-192.png"
 ];
