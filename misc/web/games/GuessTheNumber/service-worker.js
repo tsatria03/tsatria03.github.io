@@ -1,5 +1,4 @@
 const CACHE_NAME = "guess-number-cache";
-
 const CORE_FILES = [
   "./",
   "./index.html",
@@ -13,9 +12,7 @@ const CORE_FILES = [
 self.addEventListener("install", event => {
   self.skipWaiting();
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(CORE_FILES);
-    })
+    caches.open(CACHE_NAME).then(cache => cache.addAll(CORE_FILES))
   );
 });
 self.addEventListener("activate", event => {
@@ -37,9 +34,7 @@ self.addEventListener("fetch", event => {
           cache.put(event.request, response.clone());
           return response;
         });
-      }).catch(() => {
-        return caches.match("./index.html");
-      });
+      }).catch(() => caches.match("./index.html"));
     })
   );
 }

@@ -15,7 +15,7 @@
 
 <div id="menuScreen">
 
-<h1>GuessTheNumber</h1>
+<h1 id="menuTitle" tabindex="-1">GuessTheNumber</h1>
 
 <p>
 Welcome to GuessTheNumber! The computer will pick a random number. Guess it before you run out of tries.
@@ -26,9 +26,9 @@ Welcome to GuessTheNumber! The computer will pick a random number. Guess it befo
 
 </div>
 
-<div id="settingsScreen" style="display:none;">
+<div id="settingsScreen">
 
-<h3>Game Settings</h3>
+<h3 id="settingsTitle" tabindex="-1">Game Settings</h3>
 
 <label for="min">Minimum number</label><br>
 <input type="number" id="min" value="1" min="1"><br><br>
@@ -43,9 +43,7 @@ Welcome to GuessTheNumber! The computer will pick a random number. Guess it befo
 
 </div>
 
-<div id="gameArea" style="display:none">
-
-<h1>GuessTheNumber</h1>
+<div id="gameArea">
 
 <label for="guessInput">Enter your guess</label><br>
 <input type="number" id="guessInput" min="1"><br>
@@ -54,18 +52,18 @@ Welcome to GuessTheNumber! The computer will pick a random number. Guess it befo
 
 </div>
 
-<script src="game.js"></script>
 <script src="modules/speech.js"></script>
 <script src="modules/sound.js"></script>
+<script src="game.js"></script>
 
 <script>
 
 window.addEventListener("load", async () => {
-
     SoundModule.init();
     SoundModule.preloadAll();
-
-    if ("serviceWorker" in navigator) {
+    showMenu();
+    if ("serviceWorker" in navigator)
+{
         try {
             const response = await fetch("./version.txt");
             const version = (await response.text()).trim();
@@ -77,8 +75,7 @@ window.addEventListener("load", async () => {
             navigator.serviceWorker.register("./service-worker.js");
         }
     }
-}
-);
+});
 
 </script>
 

@@ -5,3 +5,7 @@
     height:1px;
     overflow:hidden;
 }
+#settingsScreen,
+#gameArea {
+    display: none;
+}
