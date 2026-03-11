@@ -47,35 +47,36 @@ async function preloadAll() {
     }
     return Promise.all(promises);
 }
-    async function play(path, options = {})
+async function play(path, options = {})
 {
-    if (audioContext && audioContext.state === "suspended") {
-        audioContext.resume();
+    if (!audioContext) init();
+    if (audioContext && audioContext.state === "suspended")
+{
+        await audioContext.resume();
     }
-        if (!audioContext) init();
-        const loop = options.loop || false;
-        const volume = (options.volume ?? 1) * masterVolume;
-        try {
-            const buffer = await loadSound(path);
-            if (!buffer) {
-                fallbackPlay(path, loop, volume);
-                return;
-            }
-            const source = audioContext.createBufferSource();
-            source.buffer = buffer;
-            source.loop = loop;
-            const gain = audioContext.createGain();
-            gain.gain.value = volume;
-            source.connect(gain);
-            gain.connect(audioContext.destination);
-            source.start(0);
-            if (loop) {
-                activeLoops[path] = source;
-            }
-        } catch (e) {
+    const loop = options.loop || false;
+    const volume = (options.volume ?? 1) * masterVolume;
+    try {
+        const buffer = await loadSound(path);
+        if (!buffer) {
             fallbackPlay(path, loop, volume);
+            return;
         }
+        const source = audioContext.createBufferSource();
+        source.buffer = buffer;
+        source.loop = loop;
+        const gain = audioContext.createGain();
+        gain.gain.value = volume;
+        source.connect(gain);
+        gain.connect(audioContext.destination);
+        source.start(0);
+        if (loop) {
+            activeLoops[path] = source;
+        }
+    } catch (e) {
+        fallbackPlay(path, loop, volume);
     }
+}
     function fallbackPlay(path, loop, volume) {
         const audio = new Audio(path);
         audio.volume = volume;
