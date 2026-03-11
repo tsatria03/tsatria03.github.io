@@ -1,4 +1,5 @@
-const CACHE_NAME = "guess-number-cache";
+const VERSION = "2.2";
+const CACHE_NAME = "guess-number-cache-" + VERSION;
 const CORE_FILES = [
   "./",
   "./index.html",
@@ -7,6 +8,10 @@ const CORE_FILES = [
   "./modules/sound.js",
   "./style.css",
   "./manifest.json",
+"./assets/audio/start.mp3",
+"./assets/audio/stop.mp3",
+"./assets/audio/high.mp3",
+"./assets/audio/low.mp3",
   "./assets/icons/icon-192.png"
 ];
 self.addEventListener("install", event => {

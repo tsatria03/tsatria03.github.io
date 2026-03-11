@@ -1,4 +1,4 @@
-function ScreenReaderSpeak(message)
+function AnnounceToScreenReader(message)
 {
     const notificationArea = document.getElementById('notification-area');
     if (!notificationArea) return;
@@ -9,4 +9,9 @@ function ScreenReaderSpeak(message)
     announcement.textContent = message;
     notificationArea.appendChild(announcement);
     setTimeout(() => announcement.remove(), 1000);
+}
+
+function speak(text)
+{
+AnnounceToScreenReader(text);
 }

@@ -24,7 +24,7 @@ function startGame()
             makeGuess();
         }
     };
-    ScreenReaderSpeak(
+    speak(
         "Game started. Guess a number between " +
         minNumber +
         " and " +
@@ -40,27 +40,27 @@ function makeGuess()
     const guess = parseInt(guessBox.value);
     if (isNaN(guess))
     {
-        ScreenReaderSpeak("Please enter a valid number.");
+        speak("Please enter a valid number.");
         resetGuessBox();
         return;
     }
     if (guess < minNumber || guess > maxNumber)
     {
-        ScreenReaderSpeak("Your guess must be between " + minNumber + " and " + maxNumber + ".");
+        speak("Your guess must be between " + minNumber + " and " + maxNumber + ".");
         resetGuessBox();
         return;
     }
     triesLeft--;
     if (guess === secretNumber)
     {
-        ScreenReaderSpeak("Correct! The number was " + secretNumber + ".");
+        speak("Correct! The number was " + secretNumber + ".");
         resetGuessBox();
         endGame();
         return;
     }
     if (triesLeft <= 0)
     {
-        ScreenReaderSpeak("You ran out of tries. The number was " + secretNumber + ".");
+        speak("You ran out of tries. The number was " + secretNumber + ".");
         resetGuessBox();
         endGame();
         return;
@@ -68,12 +68,12 @@ function makeGuess()
     if (guess < secretNumber)
     {
         SoundModule.play("assets/audio/low.mp3");
-        ScreenReaderSpeak("Too low. You have " + triesLeft + " tries left.");
+        speak("Too low. You have " + triesLeft + " tries left.");
     }
     else
     {
         SoundModule.play("assets/audio/high.mp3");
-        ScreenReaderSpeak("Too high. You have " + triesLeft + " tries left.");
+        speak("Too high. You have " + triesLeft + " tries left.");
     }
     resetGuessBox();
 }
