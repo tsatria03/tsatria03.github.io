@@ -47,7 +47,11 @@ async function preloadAll() {
     }
     return Promise.all(promises);
 }
-    async function play(path, options = {}) {
+    async function play(path, options = {})
+{
+    if (audioContext && audioContext.state === "suspended") {
+        audioContext.resume();
+    }
         if (!audioContext) init();
         const loop = options.loop || false;
         const volume = (options.volume ?? 1) * masterVolume;
