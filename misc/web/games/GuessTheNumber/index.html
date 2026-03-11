@@ -45,6 +45,8 @@ Welcome to GuessTheNumber! The computer will pick a random number. Guess it befo
 
 <div id="gameArea">
 
+<div id="notification-area" aria-live="assertive" aria-atomic="true"></div>
+
 <label for="guessInput">Enter your guess</label><br>
 <input type="number" id="guessInput" min="1"><br>
 
@@ -61,9 +63,14 @@ Welcome to GuessTheNumber! The computer will pick a random number. Guess it befo
 window.addEventListener("load", async () => {
     SoundModule.init();
     SoundModule.preloadAll();
+    document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") {
+            SoundModule.init();
+        }
+    });
     showMenu();
     if ("serviceWorker" in navigator)
-{
+    {
         try {
             const response = await fetch("./version.txt");
             const version = (await response.text()).trim();
