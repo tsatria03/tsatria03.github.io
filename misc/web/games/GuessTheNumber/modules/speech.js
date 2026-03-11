@@ -10,7 +10,3 @@ function ScreenReaderSpeak(message)
     notificationArea.appendChild(announcement);
     setTimeout(() => announcement.remove(), 1000);
 }
-function setStatus(text)
-{
-    ScreenReaderSpeak(text);
-}

@@ -2,24 +2,6 @@ let secretNumber;
 let triesLeft;
 let minNumber;
 let maxNumber;
-function showMenu()
-{
-    document.getElementById("menuScreen").style.display = "block";
-    document.getElementById("settingsScreen").style.display = "none";
-    document.getElementById("gameArea").style.display = "none";
-document.getElementById("menuTitle").focus();
-}
-function openSettings()
-{
-    document.getElementById("menuScreen").style.display = "none";
-    document.getElementById("settingsScreen").style.display = "block";
-    document.getElementById("gameArea").style.display = "none";
-    document.getElementById("settingsTitle").focus();
-}
-function closeSettings()
-{
-    showMenu();
-}
 function startGame()
 {
     SoundModule.play("assets/audio/start.mp3");
@@ -42,7 +24,7 @@ function startGame()
             makeGuess();
         }
     };
-    setStatus(
+    ScreenReaderSpeak(
         "Game started. Guess a number between " +
         minNumber +
         " and " +
@@ -58,27 +40,27 @@ function makeGuess()
     const guess = parseInt(guessBox.value);
     if (isNaN(guess))
     {
-        setStatus("Please enter a valid number.");
+        ScreenReaderSpeak("Please enter a valid number.");
         resetGuessBox();
         return;
     }
     if (guess < minNumber || guess > maxNumber)
     {
-        setStatus("Your guess must be between " + minNumber + " and " + maxNumber + ".");
+        ScreenReaderSpeak("Your guess must be between " + minNumber + " and " + maxNumber + ".");
         resetGuessBox();
         return;
     }
     triesLeft--;
     if (guess === secretNumber)
     {
-        setStatus("Correct! The number was " + secretNumber + ".");
+        ScreenReaderSpeak("Correct! The number was " + secretNumber + ".");
         resetGuessBox();
         endGame();
         return;
     }
     if (triesLeft <= 0)
     {
-        setStatus("You ran out of tries. The number was " + secretNumber + ".");
+        ScreenReaderSpeak("You ran out of tries. The number was " + secretNumber + ".");
         resetGuessBox();
         endGame();
         return;
@@ -86,12 +68,12 @@ function makeGuess()
     if (guess < secretNumber)
     {
         SoundModule.play("assets/audio/low.mp3");
-        setStatus("Too low. You have " + triesLeft + " tries left.");
+        ScreenReaderSpeak("Too low. You have " + triesLeft + " tries left.");
     }
     else
     {
         SoundModule.play("assets/audio/high.mp3");
-        setStatus("Too high. You have " + triesLeft + " tries left.");
+        ScreenReaderSpeak("Too high. You have " + triesLeft + " tries left.");
     }
     resetGuessBox();
 }
